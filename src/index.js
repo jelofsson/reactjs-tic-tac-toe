@@ -32,24 +32,16 @@ class Board extends React.Component {
   }
 
   render() {
+    let rows = Array(3).fill(null);
+    for(let x=0; x<3; x++) {
+      let cols = Array(3).fill(null);
+      for(let y=0; y<3; y++) {
+        cols[y] = this.renderSquare((x*3)+y);
+      }
+      rows[x] = React.createElement('div', {className: "board-row"}, cols);
+    }
     return (
-      <div>
-        <div className="board-row">
-          {this.renderSquare(0)}
-          {this.renderSquare(1)}
-          {this.renderSquare(2)}
-        </div>
-        <div className="board-row">
-          {this.renderSquare(3)}
-          {this.renderSquare(4)}
-          {this.renderSquare(5)}
-        </div>
-        <div className="board-row">
-          {this.renderSquare(6)}
-          {this.renderSquare(7)}
-          {this.renderSquare(8)}
-        </div>
-      </div>
+      React.createElement('div', null, rows)
     );
   }
 }
